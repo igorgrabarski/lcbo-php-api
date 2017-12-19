@@ -1,0 +1,15 @@
+{
+    "name": "igor/lcbo-php-api",
+    "description": "PHP wrapper for LCBO official API",
+    "type": "libbrary",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Grabarski",
+            "email": "igorgrabarski@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^2.4"
+    }
+}
