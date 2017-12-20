@@ -11,5 +11,13 @@
     ],
     "require": {
         "vlucas/phpdotenv": "^2.4"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "igorgrabarski\\" : "src/",
+            "igorgrabarski\\utils\\" : "src/utils",
+            "igorgrabarski\\classes\\" : "src/classes"
+        }
     }
 }
