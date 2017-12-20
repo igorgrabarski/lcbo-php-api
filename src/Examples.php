@@ -9,11 +9,18 @@ use igorgrabarski\LCBO;
 
 $lcbo = new LCBO();
 
- $stores = $lcbo->getStores();
-
- print_r($stores);
+// $stores = $lcbo->getStores();
+//
+// print_r($stores);
 
 //$store = $lcbo->getStore(31);
 //
 //print_r($store);
 
+//$products = $lcbo->getProducts();
+//
+//print_r($products);
+
+//$product = $lcbo->getProduct(311787);
+//
+//print_r($product);
