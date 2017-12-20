@@ -32,3 +32,11 @@ $lcbo = new LCBO();
 //$inventories = $lcbo->getInventories();
 //
 //print_r($inventories);
+
+//$dataset = $lcbo->getDataset(2419);
+//
+//print_r($dataset);
+
+//$datasets = $lcbo->getDatasets();
+//
+//print_r($datasets);

@@ -5,6 +5,7 @@ namespace igorgrabarski;
 use DateTime;
 use Dotenv\Dotenv;
 use Exception;
+use igorgrabarski\classes\Dataset;
 use igorgrabarski\classes\Inventory;
 use igorgrabarski\classes\Product;
 use igorgrabarski\classes\Store;
@@ -87,7 +88,7 @@ class LCBO {
 
 		// If we pass $id, e.g. we use this method independently
 		// to retrieve the single store object.
-		if ( !is_null( $id ) ) {
+		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_STORE' );
 			$url .= $id;
 			$url .= '?access_key=';
@@ -145,6 +146,7 @@ class LCBO {
 		$store->setFridayClose( isset( $result->friday_close ) ? $result->friday_close : null );
 		$store->setSaturdayOpen( isset( $result->saturday_open ) ? $result->saturday_open : null );
 		$store->setSaturdayClose( isset( $result->saturday_close ) ? $result->saturday_close : null );
+
 		return $store;
 	}
 
@@ -186,8 +188,8 @@ class LCBO {
 
 	}
 
-	public function getProduct($id, $result = null ) {
-		if ( !is_null( $id ) ) {
+	public function getProduct( $id, $result = null ) {
+		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_PRODUCT' );
 			$url .= $id;
 			$url .= '?access_key=';
@@ -251,6 +253,7 @@ class LCBO {
 		$product->setValueAddedPromotionDescription( isset( $result->value_added_promotion_description ) ? $result->value_added_promotion_description : null );
 		$product->setVarietal( isset( $result->varietal ) ? $result->varietal : null );
 		$product->setVolumeInMilliliters( isset( $result->volume_in_milliliters ) ? $result->volume_in_milliliters : null );
+
 		return $product;
 	}
 
@@ -265,7 +268,7 @@ class LCBO {
 		$product_id = null
 	) {
 
-		$url = getenv( 'URL_PRODUCTS' );
+		$url = getenv( 'URL_INVENTORIES' );
 		$url .= '?access_key=';
 		$url .= getenv( 'API_KEY' );
 		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
@@ -293,8 +296,8 @@ class LCBO {
 		}
 	}
 
-	public function getInventory($store_id, $product_id, $result = null) {
-		if ( !is_null( $store_id ) && !is_null( $product_id ) ) {
+	public function getInventory( $store_id, $product_id, $result = null ) {
+		if ( ! is_null( $store_id ) && ! is_null( $product_id ) ) {
 			$url = getenv( 'URL_INVENTORY_1' );
 			$url .= $store_id;
 			$url .= getenv( 'URL_INVENTORY_2' );
@@ -320,22 +323,73 @@ class LCBO {
 		$inventory->setQuantity( isset( $result->quantity ) ? $result->quantity : null );
 		$inventory->setUpdatedOn( isset( $result->updated_on ) ? $result->updated_on : null );
 		$inventory->setUpdatedAt( isset( $result->updated_at ) ? $result->updated_at : null );
+
 		return $inventory;
 	}
 
-	public function getDatasets() {
+	public function getDatasets(
+		$page = 1,
+		$per_page = 50,
+		$order = null
+	) {
+
+		$url = getenv( 'URL_DATASETS' );
+		$url .= '?access_key=';
+		$url .= getenv( 'API_KEY' );
+		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
+
+		try {
+			$resultsRaw = json_decode( $this->loader->downloadRaw( $url ) );
+
+			$datasets = array();
+
+			foreach ( $resultsRaw->result as $result ) {
+				array_push( $datasets, $this->getDataset( null,  $result ) );
+			}
+
+			return $datasets;
+
+		} catch ( Exception $exc ) {
+			echo $exc->getMessage();
+		}
 
 	}
 
-	public function getDataset() {
+	public function getDataset( $id, $result = null ) {
+		if ( ! is_null( $id ) ) {
+			$url = getenv( 'URL_DATASET' );
+			$url .= $id;
+			$url .= '?access_key=';
+			$url .= getenv( 'API_KEY' );
 
+			try {
+				$resultsRaw = json_decode( $this->loader->downloadRaw( $url ) );
+
+				$result = $resultsRaw->result;
+
+			} catch ( Exception $exc ) {
+				echo $exc->getMessage();
+			}
+		}
+
+		$dataset = new Dataset();
+		$dataset->setId( isset( $result->id ) ? $result->id : null );
+		$dataset->setTotalProducts( isset( $result->total_products ) ? $result->total_products : null );
+		$dataset->setTotalStores( isset( $result->total_stores ) ? $result->total_stores : null );
+		$dataset->setTotalInventories( isset( $result->total_inventories ) ? $result->total_inventories : null );
+		$dataset->setTotalProductInventoryCount( isset( $result->total_product_inventory_count ) ? $result->total_product_inventory_count : null );
+		$dataset->setTotalProductInventoryVolumeInMilliliters( isset( $result->total_product_inventory_volume_in_milliliters ) ? $result->total_product_inventory_volume_in_milliliters : null );
+		$dataset->setTotalProductInventoryPriceInCents( isset( $result->total_product_inventory_price_in_cents ) ? $result->total_product_inventory_price_in_cents : null );
+		$dataset->setCreatedAt( isset( $result->created_at ) ? $result->created_at : null );
+		$dataset->setProductIds( isset( $result->product_ids ) ? $result->product_ids : null );
+		$dataset->setStoreIds( isset( $result->store_ids ) ? $result->store_ids : null );
+		$dataset->setAddedProductIds( isset( $result->added_product_ids ) ? $result->added_product_ids : null );
+		$dataset->setAddedStoreIds( isset( $result->added_store_ids ) ? $result->added_store_ids : null );
+		$dataset->setRemovedProductIds( isset( $result->removed_product_ids ) ? $result->removed_product_ids : null );
+		$dataset->setRemovedStoreIds( isset( $result->removed_store_ids ) ? $result->removed_store_ids : null );
+		$dataset->setCsvDump( isset( $result->csv_dump ) ? $result->csv_dump : null );
+		return $dataset;
 	}
 }
-
-
-
-
-
-
-
-
