@@ -9,9 +9,9 @@ use igorgrabarski\LCBO;
 
 $lcbo = new LCBO();
 
-// $stores = $lcbo->getStores();
-//
-// print_r($stores);
+ $stores = $lcbo->getStores();
+
+ print_r($stores);
 
 //$store = $lcbo->getStore(31);
 //

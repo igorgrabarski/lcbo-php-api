@@ -10,6 +10,7 @@ use igorgrabarski\classes\Inventory;
 use igorgrabarski\classes\Product;
 use igorgrabarski\classes\Store;
 use igorgrabarski\utils\CURLDownloader;
+use igorgrabarski\utils\Downloadable;
 use igorgrabarski\utils\FileGetContentsDownloader;
 
 // Composer autoloader
@@ -20,15 +21,22 @@ $dotenv->load();
 
 /**
  * Class LCBO
+ *
+ * @copyright LCBO http://www.lcbo.com/
+ *
  * @package igorgrabarski
  */
 class LCBO {
 
 
-	private $downloader;
+	/**
+	 * @var Downloadable Loader instance
+	 */
+	private $loader;
 
 	/**
 	 * LCBO constructor.
+	 * Instantiates a loader. CURLDownloader is preferable.
 	 *
 	 */
 	public function __construct() {
@@ -40,6 +48,63 @@ class LCBO {
 	}
 
 
+	/**
+	 * @param int The page number you’d like to return.
+	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
+	 *
+	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param null $order. Sort the returned stores by one or more of the listed attributes.
+	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
+	 * attribute name.
+	 *  Available values:
+	 *  distance_in_meters
+	 *	inventory_volume_in_milliliters
+	 *	id
+	 *	products_count
+	 *	inventory_count
+	 *	inventory_price_in_cents
+	 *
+	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
+	 *
+	 * @param null $product_id. Returns only stores that have inventory for the specified product.
+	 *
+	 * @param null $lat
+	 * @param null $lon. Returns all stores starting from closest to the specified geographical point.
+	 * Adds distance_in_meters attribute to the returned store objects, and defaults to ordering
+	 * them by distance_in_meters.asc.
+	 *
+	 * @param null $geo. Geocodes the provided value, and if successful, returns all stores
+	 * in the same manner as above. Subject to aggressive rate-limiting, use lat and lon
+	 * whenever possible. Google Maps JavaScript API is excellent for geocoding client-side.
+	 *
+	 * @return array Array of Store objects.
+	 */
 	public function getStores(
 		$page = 1,
 		$per_page = 50,
@@ -67,6 +132,7 @@ class LCBO {
 		$url .= is_null( $lon ) ? '' : ( '&lon=' . $lon );
 		$url .= is_null( $geo ) ? '' : ( '&geo=' . $geo );
 
+
 		try {
 			$resultsRaw = json_decode( $this->loader->downloadRaw( $url ) );
 
@@ -84,6 +150,12 @@ class LCBO {
 
 	}
 
+	/**
+	 * @param $id ID of the store.
+	 * @param string Optional parameter - result from the getStores() method.
+	 *
+	 * @return Store Instance of Store.
+	 */
 	public function getStore( $id, $result = null ) {
 
 		// If we pass $id, e.g. we use this method independently
@@ -150,6 +222,54 @@ class LCBO {
 		return $store;
 	}
 
+	/**
+	 * @param int The page number you’d like to return.
+	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
+	 *
+	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param array $order. Sort the returned stores by one or more of the listed attributes.
+	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
+	 * attribute name.
+	 *  Available values:
+	 *  distance_in_meters
+	 *	inventory_volume_in_milliliters
+	 *	id
+	 *	products_count
+	 *	inventory_count
+	 *	inventory_price_in_cents
+	 *
+	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
+	 *
+	 * @param null $store_id. ID of store
+	 *
+	 * @return array Array of Product objects.
+	 */
 	public function getProducts(
 		$page = 1,
 		$per_page = 50,
@@ -188,6 +308,12 @@ class LCBO {
 
 	}
 
+	/**
+	 * @param $id ID of the product
+	 * @param string Optional result value from getProducts() method.
+	 *
+	 * @return Product Instance of Product
+	 */
 	public function getProduct( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_PRODUCT' );
@@ -257,6 +383,56 @@ class LCBO {
 		return $product;
 	}
 
+	/**
+	 * @param int The page number you’d like to return.
+	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
+	 *
+	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 *  Available values:
+	 *  is_dead
+	 *	has_wheelchair_accessability
+	 *	has_bilingual_services
+	 *	has_product_consultant
+	 *	has_tasting_bar
+	 *	has_beer_cold_room
+	 *	has_special_occasion_permits
+	 *	has_vintages_corner
+	 *	has_parking
+	 *	has_transit_access
+	 *
+	 * @param null $order. Sort the returned stores by one or more of the listed attributes.
+	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
+	 * attribute name.
+	 *  Available values:
+	 *  distance_in_meters
+	 *	inventory_volume_in_milliliters
+	 *	id
+	 *	products_count
+	 *	inventory_count
+	 *	inventory_price_in_cents
+	 *
+	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
+	 *
+	 * @param null $product_id. Returns only stores that have inventory for the specified product.
+	 *
+	 * @param null $store_id. ID of the store.
+	 *
+	 * @return array Array of Inventory objects.
+	 */
 	public function getInventories(
 		$page = 1,
 		$per_page = 50,
@@ -296,6 +472,13 @@ class LCBO {
 		}
 	}
 
+	/**
+	 * @param $store_id ID of the store
+	 * @param $product_id ID of the product
+	 * @param null $result Optional value from getInventories() method.
+	 *
+	 * @return Inventory Instance of Inventory.
+	 */
 	public function getInventory( $store_id, $product_id, $result = null ) {
 		if ( ! is_null( $store_id ) && ! is_null( $product_id ) ) {
 			$url = getenv( 'URL_INVENTORY_1' );
@@ -327,6 +510,27 @@ class LCBO {
 		return $inventory;
 	}
 
+	/**
+	 * @param int $page. The page number you’d like to return.
+	 *
+	 * @param int $per_page. The number of objects to include per page.
+	 * The defaults is 20, and the maximum is 50.
+	 *
+	 * @param null $order. Sort the returned datasets by one or more of the listed attributes.
+	 * Ascending or descending order is specified by adding .asc or .desc to the end of
+	 * the attribute name.
+	 *  Available values:
+	 *  id
+	 *	created_at
+	 *	total_products
+	 *	total_stores
+	 *	total_inventories
+	 *	total_product_inventory_count
+	 *	total_product_inventory_volume_in_milliliters
+	 *	total_product_inventory_price_in_cents
+	 *
+	 * @return array Array of Dataset objects.
+	 */
 	public function getDatasets(
 		$page = 1,
 		$per_page = 50,
@@ -357,6 +561,13 @@ class LCBO {
 
 	}
 
+
+	/**
+	 * @param $id ID of the dataset.
+	 * @param null $result. Optional result value from getDatasets() method.
+	 *
+	 * @return Dataset. Instance of Dataset.
+	 */
 	public function getDataset( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_DATASET' );
