@@ -24,3 +24,11 @@ $lcbo = new LCBO();
 //$product = $lcbo->getProduct(311787);
 //
 //print_r($product);
+
+//$inventory = $lcbo->getInventory(329, 518415);
+//
+//print_r($inventory);
+
+//$inventories = $lcbo->getInventories();
+//
+//print_r($inventories);

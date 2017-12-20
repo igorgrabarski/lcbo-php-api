@@ -1,0 +1,521 @@
+{
+  "status": 200,
+  "message": null,
+  "pager": {
+    "records_per_page": 50,
+    "total_record_count": 1188899,
+    "current_page_record_count": 50,
+    "is_first_page": true,
+    "is_final_page": false,
+    "current_page": 1,
+    "current_page_path": "/inventories?access_key=MDpiYThhMDE3NC1lNDJjLTExZTctYWQ0Ny05ZjY3MGQzNTMyNjc6a3QxQ05TRWlBeXdpSWdSZXJZYjQwV1VaS3NsNGZSdzliaHR0\u0026page=1",
+    "next_page": 2,
+    "next_page_path": "/inventories?access_key=MDpiYThhMDE3NC1lNDJjLTExZTctYWQ0Ny05ZjY3MGQzNTMyNjc6a3QxQ05TRWlBeXdpSWdSZXJZYjQwV1VaS3NsNGZSdzliaHR0\u0026page=2",
+    "previous_page": null,
+    "previous_page_path": null,
+    "total_pages": 23778,
+    "total_pages_path": "/inventories?access_key=MDpiYThhMDE3NC1lNDJjLTExZTctYWQ0Ny05ZjY3MGQzNTMyNjc6a3QxQ05TRWlBeXdpSWdSZXJZYjQwV1VaS3NsNGZSdzliaHR0\u0026page=23778"
+  },
+  "result": [
+    {
+      "product_id": 518415,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 7406,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:04:23.149Z",
+      "product_no": 518415,
+      "store_no": 329
+    },
+    {
+      "product_id": 455261,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 6589,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:02:31.291Z",
+      "product_no": 455261,
+      "store_no": 329
+    },
+    {
+      "product_id": 507988,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 5451,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:01:06.379Z",
+      "product_no": 507988,
+      "store_no": 329
+    },
+    {
+      "product_id": 904409,
+      "store_id": 424,
+      "is_dead": false,
+      "quantity": 5205,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:42:54.905Z",
+      "product_no": 904409,
+      "store_no": 424
+    },
+    {
+      "product_id": 142620,
+      "store_id": 47,
+      "is_dead": false,
+      "quantity": 4560,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.826Z",
+      "product_no": 142620,
+      "store_no": 47
+    },
+    {
+      "product_id": 142620,
+      "store_id": 571,
+      "is_dead": false,
+      "quantity": 4182,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.836Z",
+      "product_no": 142620,
+      "store_no": 571
+    },
+    {
+      "product_id": 88815,
+      "store_id": 458,
+      "is_dead": false,
+      "quantity": 4159,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:05:05.211Z",
+      "product_no": 88815,
+      "store_no": 458
+    },
+    {
+      "product_id": 530337,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 3880,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T14:52:27.604Z",
+      "product_no": 530337,
+      "store_no": 329
+    },
+    {
+      "product_id": 487314,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 3697,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:12:44.550Z",
+      "product_no": 487314,
+      "store_no": 329
+    },
+    {
+      "product_id": 518415,
+      "store_id": 58,
+      "is_dead": false,
+      "quantity": 3565,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:04:23.151Z",
+      "product_no": 518415,
+      "store_no": 58
+    },
+    {
+      "product_id": 186544,
+      "store_id": 65,
+      "is_dead": false,
+      "quantity": 3378,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:03:53.457Z",
+      "product_no": 186544,
+      "store_no": 65
+    },
+    {
+      "product_id": 530337,
+      "store_id": 58,
+      "is_dead": false,
+      "quantity": 3374,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T14:52:27.606Z",
+      "product_no": 530337,
+      "store_no": 58
+    },
+    {
+      "product_id": 337949,
+      "store_id": 362,
+      "is_dead": false,
+      "quantity": 3368,
+      "updated_on": "2017-12-18",
+      "updated_at": "2017-12-20T15:25:14.260Z",
+      "product_no": 337949,
+      "store_no": 362
+    },
+    {
+      "product_id": 448605,
+      "store_id": 355,
+      "is_dead": false,
+      "quantity": 3326,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:05:10.756Z",
+      "product_no": 448605,
+      "store_no": 355
+    },
+    {
+      "product_id": 142620,
+      "store_id": 32,
+      "is_dead": false,
+      "quantity": 3318,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.842Z",
+      "product_no": 142620,
+      "store_no": 32
+    },
+    {
+      "product_id": 487322,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 3146,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:12:45.982Z",
+      "product_no": 487322,
+      "store_no": 329
+    },
+    {
+      "product_id": 438325,
+      "store_id": 630,
+      "is_dead": false,
+      "quantity": 3051,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:26:50.081Z",
+      "product_no": 438325,
+      "store_no": 630
+    },
+    {
+      "product_id": 254946,
+      "store_id": 279,
+      "is_dead": false,
+      "quantity": 3021,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:11:41.691Z",
+      "product_no": 254946,
+      "store_no": 279
+    },
+    {
+      "product_id": 381301,
+      "store_id": 329,
+      "is_dead": false,
+      "quantity": 2967,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T14:48:52.418Z",
+      "product_no": 381301,
+      "store_no": 329
+    },
+    {
+      "product_id": 691683,
+      "store_id": 362,
+      "is_dead": false,
+      "quantity": 2945,
+      "updated_on": "2017-12-18",
+      "updated_at": "2017-12-20T15:34:48.964Z",
+      "product_no": 691683,
+      "store_no": 362
+    },
+    {
+      "product_id": 696468,
+      "store_id": 515,
+      "is_dead": false,
+      "quantity": 2902,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.159Z",
+      "product_no": 696468,
+      "store_no": 515
+    },
+    {
+      "product_id": 253948,
+      "store_id": 346,
+      "is_dead": false,
+      "quantity": 2842,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:39:46.892Z",
+      "product_no": 253948,
+      "store_no": 346
+    },
+    {
+      "product_id": 696468,
+      "store_id": 68,
+      "is_dead": false,
+      "quantity": 2658,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.165Z",
+      "product_no": 696468,
+      "store_no": 68
+    },
+    {
+      "product_id": 142620,
+      "store_id": 45,
+      "is_dead": false,
+      "quantity": 2648,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.847Z",
+      "product_no": 142620,
+      "store_no": 45
+    },
+    {
+      "product_id": 474494,
+      "store_id": 452,
+      "is_dead": false,
+      "quantity": 2616,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:26:51.141Z",
+      "product_no": 474494,
+      "store_no": 452
+    },
+    {
+      "product_id": 474494,
+      "store_id": 355,
+      "is_dead": false,
+      "quantity": 2600,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:26:51.145Z",
+      "product_no": 474494,
+      "store_no": 355
+    },
+    {
+      "product_id": 254946,
+      "store_id": 457,
+      "is_dead": false,
+      "quantity": 2583,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:11:41.694Z",
+      "product_no": 254946,
+      "store_no": 457
+    },
+    {
+      "product_id": 474494,
+      "store_id": 360,
+      "is_dead": false,
+      "quantity": 2582,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:26:51.149Z",
+      "product_no": 474494,
+      "store_no": 360
+    },
+    {
+      "product_id": 254946,
+      "store_id": 9,
+      "is_dead": false,
+      "quantity": 2451,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:11:41.695Z",
+      "product_no": 254946,
+      "store_no": 9
+    },
+    {
+      "product_id": 696468,
+      "store_id": 394,
+      "is_dead": false,
+      "quantity": 2416,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.167Z",
+      "product_no": 696468,
+      "store_no": 394
+    },
+    {
+      "product_id": 696468,
+      "store_id": 8,
+      "is_dead": false,
+      "quantity": 2399,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.169Z",
+      "product_no": 696468,
+      "store_no": 8
+    },
+    {
+      "product_id": 337949,
+      "store_id": 408,
+      "is_dead": false,
+      "quantity": 2356,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:25:14.265Z",
+      "product_no": 337949,
+      "store_no": 408
+    },
+    {
+      "product_id": 535294,
+      "store_id": 279,
+      "is_dead": false,
+      "quantity": 2289,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:24:11.155Z",
+      "product_no": 535294,
+      "store_no": 279
+    },
+    {
+      "product_id": 397638,
+      "store_id": 8,
+      "is_dead": false,
+      "quantity": 2272,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:37:46.588Z",
+      "product_no": 397638,
+      "store_no": 8
+    },
+    {
+      "product_id": 535294,
+      "store_id": 1,
+      "is_dead": false,
+      "quantity": 2248,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:24:11.159Z",
+      "product_no": 535294,
+      "store_no": 1
+    },
+    {
+      "product_id": 279307,
+      "store_id": 465,
+      "is_dead": false,
+      "quantity": 2244,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:01:41.343Z",
+      "product_no": 279307,
+      "store_no": 465
+    },
+    {
+      "product_id": 88815,
+      "store_id": 279,
+      "is_dead": false,
+      "quantity": 2231,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:05:05.218Z",
+      "product_no": 88815,
+      "store_no": 279
+    },
+    {
+      "product_id": 254946,
+      "store_id": 8,
+      "is_dead": false,
+      "quantity": 2201,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:11:41.698Z",
+      "product_no": 254946,
+      "store_no": 8
+    },
+    {
+      "product_id": 382291,
+      "store_id": 59,
+      "is_dead": false,
+      "quantity": 2165,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:15.681Z",
+      "product_no": 382291,
+      "store_no": 59
+    },
+    {
+      "product_id": 696468,
+      "store_id": 47,
+      "is_dead": false,
+      "quantity": 2102,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.170Z",
+      "product_no": 696468,
+      "store_no": 47
+    },
+    {
+      "product_id": 88815,
+      "store_id": 362,
+      "is_dead": false,
+      "quantity": 2093,
+      "updated_on": "2017-12-18",
+      "updated_at": "2017-12-20T16:05:05.220Z",
+      "product_no": 88815,
+      "store_no": 362
+    },
+    {
+      "product_id": 487264,
+      "store_id": 279,
+      "is_dead": false,
+      "quantity": 2076,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:03:17.217Z",
+      "product_no": 487264,
+      "store_no": 279
+    },
+    {
+      "product_id": 472225,
+      "store_id": 385,
+      "is_dead": false,
+      "quantity": 2049,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:26:44.755Z",
+      "product_no": 472225,
+      "store_no": 385
+    },
+    {
+      "product_id": 696468,
+      "store_id": 5,
+      "is_dead": false,
+      "quantity": 2029,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:41.172Z",
+      "product_no": 696468,
+      "store_no": 5
+    },
+    {
+      "product_id": 142620,
+      "store_id": 5,
+      "is_dead": false,
+      "quantity": 2003,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.849Z",
+      "product_no": 142620,
+      "store_no": 5
+    },
+    {
+      "product_id": 142620,
+      "store_id": 436,
+      "is_dead": false,
+      "quantity": 1997,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.851Z",
+      "product_no": 142620,
+      "store_no": 436
+    },
+    {
+      "product_id": 696864,
+      "store_id": 627,
+      "is_dead": false,
+      "quantity": 1979,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T16:09:17.200Z",
+      "product_no": 696864,
+      "store_no": 627
+    },
+    {
+      "product_id": 142620,
+      "store_id": 63,
+      "is_dead": false,
+      "quantity": 1960,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.853Z",
+      "product_no": 142620,
+      "store_no": 63
+    },
+    {
+      "product_id": 142620,
+      "store_id": 54,
+      "is_dead": false,
+      "quantity": 1957,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:35:11.854Z",
+      "product_no": 142620,
+      "store_no": 54
+    },
+    {
+      "product_id": 691683,
+      "store_id": 436,
+      "is_dead": false,
+      "quantity": 1940,
+      "updated_on": "2017-12-19",
+      "updated_at": "2017-12-20T15:34:48.969Z",
+      "product_no": 691683,
+      "store_no": 436
+    }
+  ]
+}

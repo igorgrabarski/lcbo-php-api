@@ -5,6 +5,7 @@ namespace igorgrabarski;
 use DateTime;
 use Dotenv\Dotenv;
 use Exception;
+use igorgrabarski\classes\Inventory;
 use igorgrabarski\classes\Product;
 use igorgrabarski\classes\Store;
 use igorgrabarski\utils\CURLDownloader;
@@ -253,12 +254,73 @@ class LCBO {
 		return $product;
 	}
 
-	public function getInventories() {
+	public function getInventories(
+		$page = 1,
+		$per_page = 50,
+		$where = array(),
+		$where_not = array(),
+		$order = null,
+		$query = null,
+		$store_id = null,
+		$product_id = null
+	) {
 
+		$url = getenv( 'URL_PRODUCTS' );
+		$url .= '?access_key=';
+		$url .= getenv( 'API_KEY' );
+		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
+		$url .= count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
+		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
+		$url .= is_null( $query ) ? '' : ( '&q=' . $query );
+		$url .= is_null( $store_id ) ? '' : ( '&store_id=' . $store_id );
+		$url .= is_null( $product_id ) ? '' : ( '&product_id=' . $product_id );
+
+		try {
+			$resultsRaw = json_decode( $this->loader->downloadRaw( $url ) );
+
+			$inventories = array();
+
+			foreach ( $resultsRaw->result as $result ) {
+				array_push( $inventories, $this->getInventory( null, null, $result ) );
+			}
+
+			return $inventories;
+
+		} catch ( Exception $exc ) {
+			echo $exc->getMessage();
+		}
 	}
 
-	public function getInventory() {
+	public function getInventory($store_id, $product_id, $result = null) {
+		if ( !is_null( $store_id ) && !is_null( $product_id ) ) {
+			$url = getenv( 'URL_INVENTORY_1' );
+			$url .= $store_id;
+			$url .= getenv( 'URL_INVENTORY_2' );
+			$url .= $product_id;
+			$url .= getenv( 'URL_INVENTORY_3' );
+			$url .= '?access_key=';
+			$url .= getenv( 'API_KEY' );
 
+			try {
+				$resultsRaw = json_decode( $this->loader->downloadRaw( $url ) );
+
+				$result = $resultsRaw->result;
+
+			} catch ( Exception $exc ) {
+				echo $exc->getMessage();
+			}
+		}
+
+		$inventory = new Inventory();
+		$inventory->setProductId( isset( $result->product_id ) ? $result->product_id : null );
+		$inventory->setStoreId( isset( $result->store_id ) ? $result->store_id : null );
+		$inventory->setIsDead( isset( $result->is_dead ) ? $result->is_dead : null );
+		$inventory->setQuantity( isset( $result->quantity ) ? $result->quantity : null );
+		$inventory->setUpdatedOn( isset( $result->updated_on ) ? $result->updated_on : null );
+		$inventory->setUpdatedAt( isset( $result->updated_at ) ? $result->updated_at : null );
+		return $inventory;
 	}
 
 	public function getDatasets() {
