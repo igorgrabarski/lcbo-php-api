@@ -17,16 +17,6 @@ class CURLDownloader implements Downloadable {
 	 */
 	private $url;
 
-	private $options;
-	/**
-	 * CURLDownloader constructor.
-	 *
-	 * @param $url
-	 */
-	public function __construct( $options ) {
-		$this->options = $options;
-	}
-
 	/**
 	 * Downloads the raw JSON as a string.
 	 *
@@ -42,9 +32,6 @@ class CURLDownloader implements Downloadable {
 		$loader    = curl_init();
 		curl_setopt( $loader, CURLOPT_URL, $this->url );
 		curl_setopt( $loader, CURLOPT_RETURNTRANSFER, 1 );
-		if ( $this->options ) {
-			curl_setopt_array( $loader, $this->options );
-		}
 
 		$result = curl_exec( $loader );
 
