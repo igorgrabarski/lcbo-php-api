@@ -1,6 +1,7 @@
 <?php
 
 namespace igorgrabarski\classes;
+use igorgrabarski\utils\Metadata;
 
 
 /**
@@ -64,6 +65,35 @@ class Store {
 	private $telephone;
 
 	private $updated_at;
+
+	private $sunday_open;
+
+	private $sunday_close;
+
+	private $monday_open;
+
+	private $monday_close;
+
+	private $tuesday_open;
+
+	private $tuesday_close;
+
+	private $wednesday_open;
+
+	private $wednesday_close;
+
+	private $thursday_open;
+
+	private $thursday_close;
+
+	private $friday_open;
+
+	private $friday_close;
+
+	private $saturday_open;
+
+	private $saturday_close;
+
 
 	/**
 	 * @return string Street address
@@ -485,7 +515,199 @@ class Store {
 		$this->updated_at = $updated_at;
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getSundayOpen() {
+		return $this->sunday_open;
+	}
 
+	/**
+	 * @param mixed $sunday_open
+	 */
+	public function setSundayOpen( $sunday_open ) {
+		$this->sunday_open = $sunday_open;
+	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getSundayClose() {
+		return $this->sunday_close;
+	}
 
+	/**
+	 * @param mixed $sunday_close
+	 */
+	public function setSundayClose( $sunday_close ) {
+		$this->sunday_close = $sunday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getMondayOpen() {
+		return $this->monday_open;
+	}
+
+	/**
+	 * @param mixed $monday_open
+	 */
+	public function setMondayOpen( $monday_open ) {
+		$this->monday_open = $monday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getMondayClose() {
+		return $this->monday_close;
+	}
+
+	/**
+	 * @param mixed $monday_close
+	 */
+	public function setMondayClose( $monday_close ) {
+		$this->monday_close = $monday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTuesdayOpen() {
+		return $this->tuesday_open;
+	}
+
+	/**
+	 * @param mixed $tuesday_open
+	 */
+	public function setTuesdayOpen( $tuesday_open ) {
+		$this->tuesday_open = $tuesday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTuesdayClose() {
+		return $this->tuesday_close;
+	}
+
+	/**
+	 * @param mixed $tuesday_close
+	 */
+	public function setTuesdayClose( $tuesday_close ) {
+		$this->tuesday_close = $tuesday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getWednesdayOpen() {
+		return $this->wednesday_open;
+	}
+
+	/**
+	 * @param mixed $wednesday_open
+	 */
+	public function setWednesdayOpen( $wednesday_open ) {
+		$this->wednesday_open = $wednesday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getWednesdayClose() {
+		return $this->wednesday_close;
+	}
+
+	/**
+	 * @param mixed $wednesday_close
+	 */
+	public function setWednesdayClose( $wednesday_close ) {
+		$this->wednesday_close = $wednesday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getThursdayOpen() {
+		return $this->thursday_open;
+	}
+
+	/**
+	 * @param mixed $thursday_open
+	 */
+	public function setThursdayOpen( $thursday_open ) {
+		$this->thursday_open = $thursday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getThursdayClose() {
+		return $this->thursday_close;
+	}
+
+	/**
+	 * @param mixed $thursday_close
+	 */
+	public function setThursdayClose( $thursday_close ) {
+		$this->thursday_close = $thursday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getFridayOpen() {
+		return $this->friday_open;
+	}
+
+	/**
+	 * @param mixed $friday_open
+	 */
+	public function setFridayOpen( $friday_open ) {
+		$this->friday_open = $friday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getFridayClose() {
+		return $this->friday_close;
+	}
+
+	/**
+	 * @param mixed $friday_close
+	 */
+	public function setFridayClose( $friday_close ) {
+		$this->friday_close = $friday_close;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSaturdayOpen() {
+		return $this->saturday_open;
+	}
+
+	/**
+	 * @param mixed $saturday_open
+	 */
+	public function setSaturdayOpen( $saturday_open ) {
+		$this->saturday_open = $saturday_open;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSaturdayClose() {
+		return $this->saturday_close;
+	}
+
+	/**
+	 * @param mixed $saturday_close
+	 */
+	public function setSaturdayClose( $saturday_close ) {
+		$this->saturday_close = $saturday_close;
+	}
 }
