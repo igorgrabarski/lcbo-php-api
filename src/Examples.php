@@ -4,8 +4,6 @@
 // Add composer's autoloader
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 
-
-use igorgrabarski\classes\Store;
 use igorgrabarski\LCBO;
 
 // Add your API_KEY in .env file!!!

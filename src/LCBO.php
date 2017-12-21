@@ -13,9 +13,7 @@ use igorgrabarski\utils\CURLDownloader;
 use igorgrabarski\utils\Downloadable;
 use igorgrabarski\utils\FileGetContentsDownloader;
 
-// Composer autoloader
-require dirname( __DIR__ ) . '/vendor/autoload.php';
-//
+// Load variables from .env file
 $dotenv = new Dotenv( dirname( __DIR__ ) );
 $dotenv->load();
 
