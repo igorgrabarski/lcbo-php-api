@@ -3,7 +3,6 @@
     "description": "PHP wrapper for LCBO official API",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.0",
     "authors": [
         {
             "name": "Igor Grabarski",
@@ -22,6 +21,5 @@
             "igorgrabarski\\utils\\" : "src/utils",
             "igorgrabarski\\classes\\" : "src/classes"
         }
-    },
-    "minimum-stability": "stable"
+    }
 }
