@@ -6,10 +6,12 @@
     "authors": [
         {
             "name": "Igor Grabarski",
-            "email": "igorgrabarski@gmail.com"
+            "email": "igorgrabarski@gmail.com",
+            "homepage": "https://igorg.tech"
         }
     ],
     "require": {
+        "php": "^5.3.3 || ^7.0",
         "vlucas/phpdotenv": "^2.4"
     },
 
