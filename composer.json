@@ -1,7 +1,7 @@
 {
-    "name": "igor/lcbo-php-api",
+    "name": "igorgrabarski/lcbo-php-api",
     "description": "PHP wrapper for LCBO official API",
-    "type": "libbrary",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
