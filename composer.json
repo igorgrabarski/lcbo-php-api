@@ -21,5 +21,6 @@
             "igorgrabarski\\utils\\" : "src/utils",
             "igorgrabarski\\classes\\" : "src/classes"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
