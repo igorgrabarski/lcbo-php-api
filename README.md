@@ -1,7 +1,7 @@
 ### PHP wrapper for [official LCBO API](https://lcboapi.com)
 
 #### Installation:
-* Install dependencies: `composer install`
+* Run in command line: `composer require igorgrabarski/lcbo-php-api`
 * Get API_KEY from [here](https://lcboapi.com/manager/keys)
 * Add your API_KEY to `vendor/igorgrabarski/lcbo-php-api/.env.example` file.
 * Rename `vendor/igorgrabarski/lcbo-php-api/.env.example`
