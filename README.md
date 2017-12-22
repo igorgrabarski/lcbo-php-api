@@ -3,7 +3,7 @@
 #### Installation:
 * Install dependencies: `composer install`
 * Get API_KEY from [here](https://lcboapi.com/manager/keys)
-* Add your API_KEY to `.env.example` file.
+* Add your API_KEY to `vendor/igorgrabarski/lcbo-php-api/.env.example` file.
 * Rename `vendor/igorgrabarski/lcbo-php-api/.env.example`
 file to `vendor/igorgrabarski/lcbo-php-api/.env`
 

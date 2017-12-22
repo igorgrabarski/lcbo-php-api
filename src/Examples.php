@@ -16,7 +16,7 @@ $stores = $lcbo->getStores();
 print_r($stores);
 
 // Get particular store by id
-/*$store = $lcbo->getStore(31);
+$store = $lcbo->getStore(31);
 print_r($store);
 
 // Get all products
@@ -41,4 +41,4 @@ print_r($dataset);
 
 // Get all datasets
 $datasets = $lcbo->getDatasets();
-print_r($datasets);*/
+print_r($datasets);
