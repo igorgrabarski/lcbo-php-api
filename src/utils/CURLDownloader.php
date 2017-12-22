@@ -34,11 +34,22 @@ class CURLDownloader implements Downloadable {
 		curl_setopt( $loader, CURLOPT_RETURNTRANSFER, 1 );
 
 		$result = curl_exec( $loader );
+		$error = curl_errno($loader);
+		$code = curl_getinfo($loader, CURLINFO_RESPONSE_CODE);
+		curl_close($loader);
 
-		if ( ! $result ) {
-			throw new Exception( "Error occurred while downloading the data. Check URL format." . PHP_EOL );
+
+
+		if($error){
+			throw new Exception( "Error occurred. Request failed with error code $error" . PHP_EOL );
 		}
 
+		if ($code !== 200){
+			throw new Exception("Request failed with HTTP code $code" . PHP_EOL);
+		}
+
+
 		return $result;
+
 	}
 }
