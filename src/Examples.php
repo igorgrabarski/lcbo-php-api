@@ -11,6 +11,9 @@ use igorgrabarski\LCBO;
 // Create instance of LCBO class
 $lcbo = new LCBO();
 
+// Instead unwanted parameters, just pass null.
+// For example: $lcbo->getStores(null, null, null, null, 'whisky');
+
 //// Get all stores
 //$stores = $lcbo->getStores();
 //print_r($stores);

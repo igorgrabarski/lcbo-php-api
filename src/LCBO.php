@@ -53,7 +53,7 @@ class LCBO {
 	 *
 	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
- *        is_dead
+     *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
