@@ -13,9 +13,10 @@ use igorgrabarski\utils\CURLDownloader;
 use igorgrabarski\utils\Downloadable;
 use igorgrabarski\utils\FileGetContentsDownloader;
 
-// Load variables from .env file
-$dotenv = new Dotenv( dirname( __DIR__ ) );
-$dotenv->load();
+// When used as a stand-alone library(not within Laravel),
+// uncomment 2 below lines to load variables from .env file
+// $dotenv = new Dotenv( dirname( __DIR__ ) );
+// $dotenv->load();
 
 /**
  * Class LCBO
