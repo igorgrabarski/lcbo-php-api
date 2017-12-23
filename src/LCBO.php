@@ -53,7 +53,7 @@ class LCBO {
 	 *
 	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
-	 *  is_dead
+ *        is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -66,7 +66,7 @@ class LCBO {
 	 *
 	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
-	 *  is_dead
+	 *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -81,7 +81,7 @@ class LCBO {
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
-	 *  distance_in_meters
+	 *    distance_in_meters
 	 *    inventory_volume_in_milliliters
 	 *    id
 	 *    products_count
@@ -161,7 +161,7 @@ class LCBO {
 		// to retrieve the single store object.
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_STORE' );
-			$url .= is_null( $id ) || ! is_numeric( $id ) ? 1 : $id;
+			$url .= ! is_numeric( $id ) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
@@ -227,7 +227,7 @@ class LCBO {
 	 *
 	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
-	 *  is_dead
+	 *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -240,7 +240,7 @@ class LCBO {
 	 *
 	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
-	 *  is_dead
+	 *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -255,7 +255,7 @@ class LCBO {
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
-	 *  distance_in_meters
+	 *    distance_in_meters
 	 *    inventory_volume_in_milliliters
 	 *    id
 	 *    products_count
@@ -316,7 +316,7 @@ class LCBO {
 	public function getProduct( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_PRODUCT' );
-			$url .= is_null($id) || !is_numeric($id) ? 1 : $id;
+			$url .= ! is_numeric( $id ) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
@@ -388,7 +388,7 @@ class LCBO {
 	 *
 	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
-	 *  is_dead
+	 *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -401,7 +401,7 @@ class LCBO {
 	 *
 	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
-	 *  is_dead
+	 *    is_dead
 	 *    has_wheelchair_accessability
 	 *    has_bilingual_services
 	 *    has_product_consultant
@@ -416,7 +416,7 @@ class LCBO {
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
-	 *  distance_in_meters
+	 *    distance_in_meters
 	 *    inventory_volume_in_milliliters
 	 *    id
 	 *    products_count
@@ -481,9 +481,9 @@ class LCBO {
 	public function getInventory( $store_id, $product_id, $result = null ) {
 		if ( ! is_null( $store_id ) && ! is_null( $product_id ) ) {
 			$url = getenv( 'URL_INVENTORY_1' );
-			$url .= is_null($store_id) || !is_numeric($store_id) ? 1 : $store_id;
+			$url .= ! is_numeric( $store_id ) ? 1 : $store_id;
 			$url .= getenv( 'URL_INVENTORY_2' );
-			$url .= is_null($product_id) || !is_numeric($product_id) ? 1 : $product_id;
+			$url .= ! is_numeric( $product_id ) ? 1 : $product_id;
 			$url .= getenv( 'URL_INVENTORY_3' );
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
@@ -519,7 +519,7 @@ class LCBO {
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of
 	 * the attribute name.
 	 *  Available values:
-	 *  id
+	 *    id
 	 *    created_at
 	 *    total_products
 	 *    total_stores
@@ -570,7 +570,7 @@ class LCBO {
 	public function getDataset( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_DATASET' );
-			$url .= is_null($id) || !is_numeric($id) ? 1 : $id;
+			$url .= ! is_numeric( $id ) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
