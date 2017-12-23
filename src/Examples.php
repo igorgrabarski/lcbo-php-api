@@ -20,8 +20,8 @@ $lcbo = new LCBO();
 //print_r($store);
 
 // Get all products
-$products = $lcbo->getProducts();
-print_r($products[0]->getInventoryCount());
+//$products = $lcbo->getProducts();
+//print_r($products);
 
 //// Get particular product by id
 //$product = $lcbo->getProduct(311787);

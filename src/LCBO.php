@@ -51,54 +51,54 @@ class LCBO {
 	 * @param int The page number you’d like to return.
 	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
 	 *
-	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param null $order. Sort the returned stores by one or more of the listed attributes.
+	 * @param null $order . Sort the returned stores by one or more of the listed attributes.
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
 	 *  distance_in_meters
-	 *	inventory_volume_in_milliliters
-	 *	id
-	 *	products_count
-	 *	inventory_count
-	 *	inventory_price_in_cents
+	 *    inventory_volume_in_milliliters
+	 *    id
+	 *    products_count
+	 *    inventory_count
+	 *    inventory_price_in_cents
 	 *
-	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * @param null $query . Returns all stores that match the provided full-text search query,
 	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
 	 *
-	 * @param null $product_id. Returns only stores that have inventory for the specified product.
+	 * @param null $product_id . Returns only stores that have inventory for the specified product.
 	 *
 	 * @param null $lat
-	 * @param null $lon. Returns all stores starting from closest to the specified geographical point.
+	 * @param null $lon . Returns all stores starting from closest to the specified geographical point.
 	 * Adds distance_in_meters attribute to the returned store objects, and defaults to ordering
 	 * them by distance_in_meters.asc.
 	 *
-	 * @param null $geo. Geocodes the provided value, and if successful, returns all stores
+	 * @param null $geo . Geocodes the provided value, and if successful, returns all stores
 	 * in the same manner as above. Subject to aggressive rate-limiting, use lat and lon
 	 * whenever possible. Google Maps JavaScript API is excellent for geocoding client-side.
 	 *
@@ -107,8 +107,8 @@ class LCBO {
 	public function getStores(
 		$page = 1,
 		$per_page = 50,
-		$where = array(),
-		$where_not = array(),
+		$where = null,
+		$where_not = null,
 		$order = null,
 		$query = null,
 		$product_id = null,
@@ -120,10 +120,10 @@ class LCBO {
 		$url = getenv( 'URL_STORES' );
 		$url .= '?access_key=';
 		$url .= getenv( 'API_KEY' );
-		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
-		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
-		$url .= count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
-		$url .= count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
+		$url .= is_null( $page ) || ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= is_null( $per_page ) || ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= is_null( $where_not ) || count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
+		$url .= is_null( $where_not ) || count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
 		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
 		$url .= is_null( $query ) ? '' : ( '&q=' . $query );
 		$url .= is_null( $product_id ) ? '' : ( '&product_id=' . $product_id );
@@ -161,7 +161,7 @@ class LCBO {
 		// to retrieve the single store object.
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_STORE' );
-			$url .= $id;
+			$url .= is_null( $id ) || ! is_numeric( $id ) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
@@ -225,55 +225,55 @@ class LCBO {
 	 * @param int The page number you’d like to return.
 	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
 	 *
-	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param array $order. Sort the returned stores by one or more of the listed attributes.
+	 * @param array $order . Sort the returned stores by one or more of the listed attributes.
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
 	 *  distance_in_meters
-	 *	inventory_volume_in_milliliters
-	 *	id
-	 *	products_count
-	 *	inventory_count
-	 *	inventory_price_in_cents
+	 *    inventory_volume_in_milliliters
+	 *    id
+	 *    products_count
+	 *    inventory_count
+	 *    inventory_price_in_cents
 	 *
-	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * @param null $query . Returns all stores that match the provided full-text search query,
 	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
 	 *
-	 * @param null $store_id. ID of store
+	 * @param null $store_id . ID of store
 	 *
 	 * @return array Array of Product objects.
 	 */
 	public function getProducts(
 		$page = 1,
 		$per_page = 50,
-		$where = array(),
-		$where_not = array(),
+		$where = null,
+		$where_not = null,
 		$order = null,
 		$query = null,
 		$store_id = null
@@ -282,10 +282,10 @@ class LCBO {
 		$url = getenv( 'URL_PRODUCTS' );
 		$url .= '?access_key=';
 		$url .= getenv( 'API_KEY' );
-		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
-		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
-		$url .= count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
-		$url .= count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
+		$url .= is_null( $page ) || ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= is_null( $per_page ) || ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= is_null( $where ) || count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
+		$url .= is_null( $where_not ) || count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
 		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
 		$url .= is_null( $query ) ? '' : ( '&q=' . $query );
 		$url .= is_null( $store_id ) ? '' : ( '&store_id=' . $store_id );
@@ -316,7 +316,7 @@ class LCBO {
 	public function getProduct( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_PRODUCT' );
-			$url .= $id;
+			$url .= is_null($id) || !is_numeric($id) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
@@ -386,57 +386,57 @@ class LCBO {
 	 * @param int The page number you’d like to return.
 	 * @param int The number of objects to include per page. The defaults is 50, and the maximum is 200.
 	 *
-	 * @param array $where. Allows multiple values. Separate them with a comma like this: where=one,two,three
+	 * @param array $where . Allows multiple values. Separate them with a comma like this: where=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param array $where_not. Allows multiple values. Separate them with a comma like this: where_not=one,two,three
+	 * @param array $where_not . Allows multiple values. Separate them with a comma like this: where_not=one,two,three
 	 *  Available values:
 	 *  is_dead
-	 *	has_wheelchair_accessability
-	 *	has_bilingual_services
-	 *	has_product_consultant
-	 *	has_tasting_bar
-	 *	has_beer_cold_room
-	 *	has_special_occasion_permits
-	 *	has_vintages_corner
-	 *	has_parking
-	 *	has_transit_access
+	 *    has_wheelchair_accessability
+	 *    has_bilingual_services
+	 *    has_product_consultant
+	 *    has_tasting_bar
+	 *    has_beer_cold_room
+	 *    has_special_occasion_permits
+	 *    has_vintages_corner
+	 *    has_parking
+	 *    has_transit_access
 	 *
-	 * @param null $order. Sort the returned stores by one or more of the listed attributes.
+	 * @param null $order . Sort the returned stores by one or more of the listed attributes.
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of the
 	 * attribute name.
 	 *  Available values:
 	 *  distance_in_meters
-	 *	inventory_volume_in_milliliters
-	 *	id
-	 *	products_count
-	 *	inventory_count
-	 *	inventory_price_in_cents
+	 *    inventory_volume_in_milliliters
+	 *    id
+	 *    products_count
+	 *    inventory_count
+	 *    inventory_price_in_cents
 	 *
-	 * @param null $query. Returns all stores that match the provided full-text search query,
+	 * @param null $query . Returns all stores that match the provided full-text search query,
 	 * this is purely text-based, look to the lat, lon, and geo parameters for geographical queries.
 	 *
-	 * @param null $product_id. Returns only stores that have inventory for the specified product.
+	 * @param null $product_id . Returns only stores that have inventory for the specified product.
 	 *
-	 * @param null $store_id. ID of the store.
+	 * @param null $store_id . ID of the store.
 	 *
 	 * @return array Array of Inventory objects.
 	 */
 	public function getInventories(
 		$page = 1,
 		$per_page = 50,
-		$where = array(),
-		$where_not = array(),
+		$where = null,
+		$where_not = null,
 		$order = null,
 		$query = null,
 		$store_id = null,
@@ -446,10 +446,10 @@ class LCBO {
 		$url = getenv( 'URL_INVENTORIES' );
 		$url .= '?access_key=';
 		$url .= getenv( 'API_KEY' );
-		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
-		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
-		$url .= count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
-		$url .= count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
+		$url .= is_null( $page ) || ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= is_null( $per_page ) || ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= is_null( $where ) || count( $where ) == 0 ? '' : ( '&where=' . join( ',', $where ) );
+		$url .= is_null( $where_not ) || count( $where_not ) == 0 ? '' : ( '&where_not=' . join( ',', $where_not ) );
 		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
 		$url .= is_null( $query ) ? '' : ( '&q=' . $query );
 		$url .= is_null( $store_id ) ? '' : ( '&store_id=' . $store_id );
@@ -481,9 +481,9 @@ class LCBO {
 	public function getInventory( $store_id, $product_id, $result = null ) {
 		if ( ! is_null( $store_id ) && ! is_null( $product_id ) ) {
 			$url = getenv( 'URL_INVENTORY_1' );
-			$url .= $store_id;
+			$url .= is_null($store_id) || !is_numeric($store_id) ? 1 : $store_id;
 			$url .= getenv( 'URL_INVENTORY_2' );
-			$url .= $product_id;
+			$url .= is_null($product_id) || !is_numeric($product_id) ? 1 : $product_id;
 			$url .= getenv( 'URL_INVENTORY_3' );
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
@@ -510,23 +510,23 @@ class LCBO {
 	}
 
 	/**
-	 * @param int $page. The page number you’d like to return.
+	 * @param int $page . The page number you’d like to return.
 	 *
-	 * @param int $per_page. The number of objects to include per page.
+	 * @param int $per_page . The number of objects to include per page.
 	 * The defaults is 20, and the maximum is 50.
 	 *
-	 * @param null $order. Sort the returned datasets by one or more of the listed attributes.
+	 * @param null $order . Sort the returned datasets by one or more of the listed attributes.
 	 * Ascending or descending order is specified by adding .asc or .desc to the end of
 	 * the attribute name.
 	 *  Available values:
 	 *  id
-	 *	created_at
-	 *	total_products
-	 *	total_stores
-	 *	total_inventories
-	 *	total_product_inventory_count
-	 *	total_product_inventory_volume_in_milliliters
-	 *	total_product_inventory_price_in_cents
+	 *    created_at
+	 *    total_products
+	 *    total_stores
+	 *    total_inventories
+	 *    total_product_inventory_count
+	 *    total_product_inventory_volume_in_milliliters
+	 *    total_product_inventory_price_in_cents
 	 *
 	 * @return array Array of Dataset objects.
 	 */
@@ -539,8 +539,8 @@ class LCBO {
 		$url = getenv( 'URL_DATASETS' );
 		$url .= '?access_key=';
 		$url .= getenv( 'API_KEY' );
-		$url .= ! is_numeric( $page ) ? '' : ( '&page=' . $page );
-		$url .= ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
+		$url .= is_null( $page ) || ! is_numeric( $page ) ? '' : ( '&page=' . $page );
+		$url .= is_null( $per_page ) || ( $per_page < 50 && $per_page > 200 ) ? '' : ( '&per_page=' . $per_page );
 		$url .= is_null( $order ) ? '' : ( '&order=' . join( ',', $order ) );
 
 		try {
@@ -549,7 +549,7 @@ class LCBO {
 			$datasets = array();
 
 			foreach ( $resultsRaw->result as $result ) {
-				array_push( $datasets, $this->getDataset( null,  $result ) );
+				array_push( $datasets, $this->getDataset( null, $result ) );
 			}
 
 			return $datasets;
@@ -563,14 +563,14 @@ class LCBO {
 
 	/**
 	 * @param $id ID of the dataset.
-	 * @param null $result. Optional result value from getDatasets() method.
+	 * @param null $result . Optional result value from getDatasets() method.
 	 *
 	 * @return Dataset. Instance of Dataset.
 	 */
 	public function getDataset( $id, $result = null ) {
 		if ( ! is_null( $id ) ) {
 			$url = getenv( 'URL_DATASET' );
-			$url .= $id;
+			$url .= is_null($id) || !is_numeric($id) ? 1 : $id;
 			$url .= '?access_key=';
 			$url .= getenv( 'API_KEY' );
 
@@ -600,6 +600,7 @@ class LCBO {
 		$dataset->setRemovedProductIds( isset( $result->removed_product_ids ) ? $result->removed_product_ids : null );
 		$dataset->setRemovedStoreIds( isset( $result->removed_store_ids ) ? $result->removed_store_ids : null );
 		$dataset->setCsvDump( isset( $result->csv_dump ) ? $result->csv_dump : null );
+
 		return $dataset;
 	}
 }
